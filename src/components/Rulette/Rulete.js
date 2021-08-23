@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
 
-const data = [{ option: "0" }, { option: "1" }, { option: "2" }];
+const data = [
+  { option: "hi" },
+  { option: "re" },
+  { option: "2fe", style: { backgroundColor: "green" } },
+];
 
 export default () => {
   const [mustSpin, setMustSpin] = useState(false);
