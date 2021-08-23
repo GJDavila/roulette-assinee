@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
+import styled from "styled-components";
 
 const data = [
   { option: "hi" },
@@ -7,7 +8,12 @@ const data = [
   { option: "2fe", style: { backgroundColor: "green" } },
 ];
 
-export default () => {
+const Button = styled.button`
+  /* This renders the buttons above... Edit me! */
+  border-radius: 3px;
+`;
+
+const Roulette = () => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
 
@@ -27,7 +33,9 @@ export default () => {
           setMustSpin(false);
         }}
       />
-      <button onClick={handleSpinClick}>SPIN</button>
+      <Button onClick={handleSpinClick}>SPIN</Button>
     </>
   );
 };
+
+export default Roulette;
