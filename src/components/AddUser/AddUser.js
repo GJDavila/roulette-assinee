@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { FormControl, InputGroup } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 const COLORS = [
   "#5F8BFA", //BLUE
@@ -25,9 +25,11 @@ class AddUser extends React.Component {
     });
   }
 
-  onSubmitForm() {
+  onSubmitForm(e) {
+    e.preventDefault();
+    e.stopPropagation();
     let tmp = [];
-    this.state["values"].split(",").map((value) =>
+    this.state["values"]?.split(",").map((value) =>
       tmp.push({
         option: value,
         style: {
@@ -35,26 +37,48 @@ class AddUser extends React.Component {
         },
       })
     );
+    console.log(this.props);
+    this.props.setData && this.props.setData(tmp);
+    this.props.setPage && this.props.setPage("roulette");
   }
 
   render() {
-    const { users } = this.state;
-
     return (
-      <div>
-        <label>
-          Users:
-          <input
-            type="text"
-            name="values"
-            value={this.state.name}
-            onChange={this.onInputchange}
-          />
-        </label>
-        <Button onClick={this.onSubmitForm} variant="primary">
-          primary
-        </Button>
-      </div>
+      <Card
+        style={{
+          // backgroundColor: "pink",
+          marginTop: "300px",
+          marginLeft: "100px",
+          marginRight: "100px",
+          alignSelf: "center",
+        }}
+      >
+        <Card.Body
+          style={{
+            alignContent: "center",
+            justifyContent: "center",
+            marginLeft: "400px",
+          }}
+        >
+          <label>
+            Users:
+            <input
+              style={{
+                width: "500px",
+                marginRight: "10px",
+                marginLeft: "10px",
+              }}
+              type="text"
+              name="values"
+              value={this.state.name}
+              onChange={this.onInputchange}
+            />
+          </label>
+          <Button onClick={this.onSubmitForm} variant="primary">
+            Go!
+          </Button>
+        </Card.Body>
+      </Card>
     );
   }
 }
